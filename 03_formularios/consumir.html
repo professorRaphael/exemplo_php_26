@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript consultando PHP</title>
+</head>
+<body>
+  <h1>Jogos vindos do PHP</h1>
+  <button id="carregar">Consultar API</button>
+  <p id="saida" role="status"></p>
+  <script>
+    document.querySelector('#carregar').addEventListener('click', async () => {
+      const saida = document.querySelector('#saida');
+      try {
+        const resposta = await fetch('api.php');
+        if (!resposta.ok) throw new Error('Erro HTTP');
+        const jogos = await resposta.json();
+        saida.textContent = jogos.map(jogo => jogo.nome).join(', ');
+      } catch (erro) {
+        saida.textContent = `Falha na consulta: ${erro.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

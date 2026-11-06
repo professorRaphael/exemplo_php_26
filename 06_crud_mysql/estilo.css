@@ -1,0 +1,13 @@
+:root { font-family: system-ui, sans-serif; color: #1f2937; }
+body { margin: 0; background: #f3f7fb; }
+main { max-width: 780px; margin: 32px auto; padding: 28px; background: white;
+       border-radius: 16px; box-shadow: 0 10px 35px #0001; }
+form:not(.inline) { display: grid; gap: 10px; max-width: 460px; }
+input { padding: 11px; border: 1px solid #aebccd; border-radius: 7px; }
+button { cursor: pointer; border: 0; border-radius: 7px; padding: 10px 14px;
+         background: #0969da; color: white; }
+ul { padding-left: 20px; }
+li { padding: 10px 0; border-bottom: 1px solid #e2e8f0; }
+li a, li button { margin-left: 10px; }
+form.inline { display: inline; }
+a { color: #0969da; }

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>AJAX com fetch</title>
+</head>
+<body>
+  <h1>Jogos disponíveis</h1>
+  <button id="buscar">Mostrar jogos</button>
+  <p id="mensagem" role="status"></p>
+  <ul id="lista"></ul>
+
+  <script>
+    document.querySelector('#buscar').addEventListener('click', async () => {
+      const lista = document.querySelector('#lista');
+      const mensagem = document.querySelector('#mensagem');
+      lista.replaceChildren();
+      mensagem.textContent = 'Carregando...';
+
+      try {
+        const resposta = await fetch('jogos.json');
+        if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+
+        const jogos = await resposta.json();
+        jogos.forEach(jogo => {
+          const item = document.createElement('li');
+          item.textContent = `${jogo.nome} — ${jogo.plataforma}`;
+          lista.append(item);
+        });
+        mensagem.textContent = `${jogos.length} jogos encontrados.`;
+      } catch (erro) {
+        mensagem.textContent = `Não foi possível carregar: ${erro.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

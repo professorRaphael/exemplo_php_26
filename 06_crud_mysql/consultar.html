@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consulta AJAX ao MySQL</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<main>
+  <h1>Consulta ao banco com AJAX</h1>
+  <p>O JavaScript acessa api_jogos.php, que consulta o banco MySQL.</p>
+  <button id="buscar">Consultar jogos</button>
+  <p id="mensagem" role="status"></p>
+  <ul id="lista"></ul>
+  <p><a href="index.php">Voltar ao cadastro</a></p>
+</main>
+<script>
+  document.querySelector('#buscar').addEventListener('click', async () => {
+    const lista = document.querySelector('#lista');
+    const mensagem = document.querySelector('#mensagem');
+    lista.replaceChildren();
+    mensagem.textContent = 'Consultando...';
+    try {
+      const resposta = await fetch('api_jogos.php');
+      if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+      const jogos = await resposta.json();
+      for (const jogo of jogos) {
+        const item = document.createElement('li');
+        item.textContent = `${jogo.nome} (${jogo.plataforma})`;
+        lista.append(item);
+      }
+      mensagem.textContent = `${jogos.length} jogo(s) encontrado(s).`;
+    } catch (erro) {
+      mensagem.textContent = `Erro: ${erro.message}`;
+    }
+  });
+</script>
+</body>
+</html>

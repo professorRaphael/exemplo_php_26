@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>AJAX com XMLHttpRequest</title>
+</head>
+<body>
+  <h1>Carregando jogos com XMLHttpRequest</h1>
+  <button id="buscar">Carregar jogos</button>
+  <pre id="resultado">Clique no botão.</pre>
+
+  <script>
+    document.querySelector('#buscar').addEventListener('click', () => {
+      const pedido = new XMLHttpRequest();
+      pedido.open('GET', 'jogos.json');
+      pedido.onload = () => {
+        const saida = document.querySelector('#resultado');
+        saida.textContent = pedido.status === 200
+          ? pedido.responseText
+          : `Erro HTTP ${pedido.status}`;
+      };
+      pedido.onerror = () => {
+        document.querySelector('#resultado').textContent = 'Falha de rede.';
+      };
+      pedido.send();
+    });
+  </script>
+</body>
+</html>

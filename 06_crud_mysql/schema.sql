@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS jogos_aula
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE jogos_aula;
+
+CREATE TABLE IF NOT EXISTS jogos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  plataforma VARCHAR(50) NOT NULL
+);

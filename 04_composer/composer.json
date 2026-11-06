@@ -1,0 +1,8 @@
+{
+  "name": "aula/exemplo-monolog",
+  "description": "Exemplo didatico de Composer e Monolog",
+  "require": {
+    "php": ">=8.2",
+    "monolog/monolog": "^3.0"
+  }
+}

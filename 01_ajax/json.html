@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>JSON no JavaScript</title>
+</head>
+<body>
+  <h1>Transformando dados em JSON</h1>
+  <pre id="saida"></pre>
+  <script>
+    const jogo = { nome: 'Celeste', ano: 2018 };
+    const texto = JSON.stringify(jogo); // objeto -> texto JSON
+    const copia = JSON.parse(texto);    // texto JSON -> objeto
+    document.querySelector('#saida').textContent =
+      `${texto}\nNome: ${copia.nome}`;
+  </script>
+</body>
+</html>
